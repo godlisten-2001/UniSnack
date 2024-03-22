@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "600484611234",
+    "project_id": "project-unisnack",
+    "storage_bucket": "project-unisnack.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600484611234:android:ead4a39b404753e38583fb",
+        "android_client_info": {
+          "package_name": "com.Sten.UniSnack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_c1p-rtSMK2CSH1wJjcEAqOuAi1CX6bE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

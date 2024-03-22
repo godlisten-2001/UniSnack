@@ -1,17 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import {  StyleSheet, Text, View } from 'react-native';
-import Button from '../components/button';
+import ButtonLink from '../components/button';
 export default function Home() {
   return (
     <>
       <Text style={styles.header}>Choose the <Text style={{color: '#FABC2A', fontWeight: 'bold'}}>Snack</Text> of your liking
       </Text>
       <View style={styles.link}>
-        <Button name='Cassava chips'/>
-        <Button name='Potato chips'/>
-        <Button name= 'Banana chips'/>
+        <ButtonLink name='Cassava chips'/>
+        <ButtonLink name='Potato chips'/>
+        <ButtonLink name= 'Banana chips'/>
       </View>
-      <StatusBar style="auto" />
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Button({name}) {
+export default function ButtonLink({name}) {
   return (
     <View style={styles.btnWrapper}>
         <Text style={styles.linkText}>{name}</Text>

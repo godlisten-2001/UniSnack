@@ -1,37 +1,103 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Login = () => {
+import { View, Text, StyleSheet, TextInput, Button, KeyboardAvoidingView, Alert } from 'react-native';
+import { FIREBASE_AUTH } from '../firebase/config.js'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { setDoc } from 'firebase/firestore';
+
+const Login = ({navigation}) => {
+    const [ email, setEmail ] = useState('');
+    const [ password, setPassword ] = useState('')
+    const auth = FIREBASE_AUTH;
+    const signIn = () => {
+        signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            setEmail(null);
+            setPassword(null);
+            
+        })
+        .catch(err => alert('Login faied: '+ err.message))
+    }
     return (
-        <>
+        
+        <View style={styles.container}>
             <Text style={styles.header}>Hi!</Text>
-            <View style={styles.loginForm}>
-            <TextInput 
+            <View style={styles.loginForm}> 
+                <Text style={{color: '#000000', fontSize: 27.65, fontWeight: 'bold', marginBottom: 46}}>
+                    Uni<Text style={{color: '#FABC2A'}}>Snack</Text>
+                </Text> 
+                <TextInput 
+                editable
                 style={styles.input}
-                 placeholder="useless placeholder"
-            />
+                placeholder="email"
+                placeholderTextColor="black"
+                value={email}
+                onChangeText={(text) => {
+                    setEmail(text);
+                }}
+                />     
+                <TextInput 
+                editable
+                style={styles.input}
+                placeholder="Password"
+                placeholderTextColor="black"
+                value={password}
+                onChangeText={(text) => {
+                    setPassword(text);
+                }}
+                secureTextEntry={true}
+                />     
+                <Button 
+                title='SIGN IN'
+                color='#7CDF64'
+                onPress={signIn}
+                />  
+                <View style={styles.footer}>
+                    <Text>
+                        Don't have an account? <Text style={{color:'#7CDF64'}} onPress={()=> {navigation.navigate('SignUp')}}>Sign Up</Text>
+                    </Text>
+                </View>   
             </View>
-        </>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#293132',
+       
+    },
    header: {
      fontSize: 27.65,
      color: 'white',
-     marginTop: 159,
+     marginTop: 100,
      marginLeft: 31
    },
    loginForm: {
     flexDirection: 'column',
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    opacity: 0.2,
     width: 346,
     height: 509,
-    marginTop: 20,
+    marginTop: 10,
     marginLeft: 31,
     borderRadius: 24
+   },
+   input: {
+     width: 300,
+     height: 60,
+     opacity: 1,
+     borderRadius: 24,
+     borderWidth: 2,
+     paddingLeft: 17,
+     marginBottom: 38
+   },
+   footer: {
+    marginTop: 38
    }
 });
 
